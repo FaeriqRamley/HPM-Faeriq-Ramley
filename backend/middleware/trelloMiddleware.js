@@ -58,3 +58,19 @@ module.exports.getTrelloBoardCards = async (req,res,next) => {
         res.send(err);
     }
 }
+
+module.exports.createTrelloTask = async (req,res,next) => {
+    console.log('running createTrelloTask middleware');
+    try {
+        const apiRes = await fetch(
+            `https://api.trello.com/1/cards?idList=${req.body.idList}&name=${req.body.name}&desc=${req.body.desc}&key=${apiKey}&token=${apiToken}`,
+            {method:'POST'}
+        );
+        const res_data = await apiRes.json()
+        req.createdTask = res_data;
+        console.log('success');
+        next();
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
