@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const TestModel = require('./models/TestModel');
 const testRoutes = require('./routes/testRoutes');
 const boardRoutes = require('./routes/boardRoutes');
+const listRoutes = require('./routes/listRoutes');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 
@@ -32,5 +33,6 @@ mongoose
 
 
 app.use('/testRoute',testRoutes);
-app.use('/boards',boardRoutes);
 app.use('/users',userRoutes);
+app.use('/boards',boardRoutes);
+app.use('/lists',listRoutes);

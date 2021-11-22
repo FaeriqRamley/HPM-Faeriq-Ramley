@@ -19,7 +19,7 @@ module.exports.syncBoards_get = async (req,res) => {
         )
     }
 
-    //
+    // update active boards
     console.log('allBoardId',allBoardId);
     console.log('userName',req.body.userName);
     await UserModel.updateOne({_id:req.body._id},{$set:{boardIdList:allBoardId}});

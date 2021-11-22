@@ -32,7 +32,7 @@ module.exports.getTrelloBoards = async (req,res,next) => {
 module.exports.getTrelloBoardLists = async (req,res,next) => {
     console.log('running gettrelloboardlists middleware');
     try {
-        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.boardId}/lists?key=${apiKey}&token=${apiToken}`);
+        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.idBoard}/lists?key=${apiKey}&token=${apiToken}`);
         const allLists = await apiRes.json();
         req.trelloBoardLists = allLists;
         console.log('success');
@@ -47,7 +47,7 @@ module.exports.getTrelloBoardLists = async (req,res,next) => {
 module.exports.getTrelloBoardCards = async (req,res,next) => {
     console.log('running gettrelloboardcards middleware');
     try {
-        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.boardId}/cards?key=${apiKey}&token=${apiToken}`);
+        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.idBoard}/cards?key=${apiKey}&token=${apiToken}`);
         const allCards = await apiRes.json();
         req.trelloBoardCards = allCards;
         console.log('success');
