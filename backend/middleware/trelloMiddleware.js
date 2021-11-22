@@ -22,7 +22,7 @@ module.exports.getTrelloBoards = async (req,res,next) => {
         req.trelloBoards = allBoards;
         console.log('success');
         next();
-    } catch (err){
+    } catch (err) {
         console.log('error caught')
         console.log(err);
         res.send(err);
@@ -37,7 +37,7 @@ module.exports.getTrelloBoardLists = async (req,res,next) => {
         req.trelloBoardLists = allLists;
         console.log('success');
         next();
-    } catch(err){
+    } catch (err) {
         console.log('error caught');
         console.log(err);
         res.send(err);
@@ -52,7 +52,7 @@ module.exports.getTrelloBoardCards = async (req,res,next) => {
         req.trelloBoardCards = allCards;
         console.log('success');
         next();
-    } catch(err){
+    } catch (err) {
         console.log('error caught');
         console.log(err);
         res.send(err);
@@ -64,10 +64,57 @@ module.exports.createTrelloTask = async (req,res,next) => {
     try {
         const apiRes = await fetch(
             `https://api.trello.com/1/cards?idList=${req.body.idList}&name=${req.body.name}&desc=${req.body.desc}&key=${apiKey}&token=${apiToken}`,
-            {method:'POST'}
+            {
+                method:'POST',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
         );
         const res_data = await apiRes.json()
         req.createdTask = res_data;
+        console.log('success');
+        next();
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
+
+module.exports.updateTrelloTask = async (req,res,next) => {
+    console.log('running updateTrelloTask middleware');
+    try {
+        const apiRes = await fetch(
+            `https://api.trello.com/1/cards/${req.body.idCard}?name=${req.body.name}&desc=${req.body.desc}&idList=${req.body.idList}&key=${apiKey}&token=${apiToken}`,
+            {
+                method: 'PUT',
+                headers: {
+                'Accept': 'application/json'
+                }
+            }
+        )
+        const res_data = await apiRes.json();
+        req.updatedTask = res_data;
+        console.log('success');
+        next();
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
+
+module.exports.archiveTrelloTask = async (req,res,next) => {
+    console.log('running archiveTrelloTask middleware');
+    try {
+        const apiRes = await fetch(
+            `https://api.trello.com/1/cards/${req.body.idCard}?closed=true&key=${apiKey}&token=${apiToken}`,
+            {
+                method: 'PUT',
+                headers: {
+                'Accept': 'application/json'
+                }
+            }
+        )
+        const res_data = await apiRes.json();
+        req.archivedTask = res_data;
         console.log('success');
         next();
     } catch (err) {
