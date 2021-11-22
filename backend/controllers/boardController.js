@@ -1,9 +1,10 @@
 const BoardModel = require('../models/BoardModel');
-const ListModel = require('../models/ListModel');
+const UserModel = require('../models/ListModel');
 
 module.exports.syncBoards_get = async (req,res) => {
+    const allBoardId = []
     for(const board of req.trelloBoards){
-
+        allBoardId.push(board.id);
         await BoardModel.updateOne(
             {idBoard:board.id},
             {
@@ -15,5 +16,8 @@ module.exports.syncBoards_get = async (req,res) => {
             {upsert:true}
         )
     }
+
+    await UserModel.updateOne({userName:req.body.userName},{$set:{boardIdList:allBoardId}})
+
     res.json({message:'syncBoards works'});
 }
