@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const ListSchema = new mongoose.Schema(
     {
-        idList: String,
-        idBoard: {type:String,ref:'boards'},
+        idList: {type:String,unique:true,required:true},
+        idBoard: String,
         name: String,
     },
     {

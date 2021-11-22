@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 
 const BoardSchema = new mongoose.Schema(
     {
-        idBoard: String,
+        idBoard: {type:String,unique:true,required:true},
         boardName: String,
         description: String,
-        url: String,
-        listId: [{type:String,ref:'Lists'}]
+        url: String
     },
     {
         collection: 'Boards'

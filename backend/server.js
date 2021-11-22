@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const TestModel = require('./models/TestModel');
-
 const testRoutes = require('./routes/testRoutes');
+const boardRoutes = require('./routes/boardRoutes');
 
 const app = express();
 
@@ -32,3 +32,4 @@ mongoose
 
 
 app.use('/testRoute',testRoutes);
+app.use('/boards',boardRoutes);
