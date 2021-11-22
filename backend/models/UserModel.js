@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema(
     {
         userName: {type:String,unique:true,required:true},
-        password: String,
+        password: {type:String,required:true},
         apiKey: String,
         apiToken: String,
-        boardIdList: [String]
+        boardIdList: [{type:String}]
     },
     {
         collection: 'Users'

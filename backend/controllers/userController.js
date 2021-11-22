@@ -2,7 +2,7 @@ const UserModel = require('../models/UserModel');
 
 module.exports.login_get = async (req,res) => {
 
-    const user = await UserModel.findOne({username:req.body.username})
+    const user = await UserModel.findOne({username:req.body.username,password:req.body.password})
 
     if (user) {
         console.log('successfully logged in');
