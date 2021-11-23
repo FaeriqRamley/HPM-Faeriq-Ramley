@@ -27,6 +27,7 @@ module.exports.syncBoardCards_get = async (req,res) => {
 
         res.status(200).send({message:'successfully synced board cards'})
     } catch (err) {
+        console.log('server/db error');
         res.status(400).send(err);
     }
 }
@@ -50,6 +51,7 @@ module.exports.getBoardCards_get = async (req,res) => {
         res.status(200).send(cardListObj);
 
     } catch (err) {
+        console.log('server/db error');
         res.status(400).send(err);
     }
 }
@@ -63,9 +65,31 @@ module.exports.createTask_post = async (req,res) => {
             name: req.createdTask.name,
             description: req.createdTask.desc
         })
-        
+
         res.status(201).send({message:'task created', newCard})
     } catch (err) {
+        console.log('server/db error');
         res.status(400).send(err);
     }
 }
+
+module.exports.updateTask_put = async (req,res) => {
+    try {
+
+        const updatedCard = await CardModel.findOneAndUpdate(
+            {idCard:req.updatedTask.id},
+            {
+                idBoard: req.updatedTask.idBoard,
+                idList: req.updatedTask.idList,
+                name: req.updatedTask.name,
+                description: req.updatedTask.desc
+            }
+        )
+
+        res.status(200).send({message:'task updated',updatedCard});
+    } catch (err) {
+        console.log('server/db error');
+        res.status(400).send(err);
+    }
+}
+

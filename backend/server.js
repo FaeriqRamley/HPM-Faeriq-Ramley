@@ -13,15 +13,6 @@ app.use(express.json());
 const mongoURI = process.env.mongo_uri
 const PORT = process.env.PORT
 
-// test route
-// app.post('/test', async (req,res)=>{
-//     await TestModel.create({
-//         name: 'test object'
-//     });
-
-//     res.json({message:'works'});
-// });
-
 mongoose
 .connect(mongoURI,{useNewUrlParser:true})
 .then(()=>{

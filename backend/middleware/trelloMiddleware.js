@@ -94,7 +94,7 @@ module.exports.updateTrelloTask = async (req,res,next) => {
         )
         const res_data = await apiRes.json();
         req.updatedTask = res_data;
-        console.log('success');
+        console.log('trello api success');
         next();
     } catch (err) {
         res.status(400).send(err);
