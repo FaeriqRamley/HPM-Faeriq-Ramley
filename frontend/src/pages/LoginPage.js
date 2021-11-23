@@ -8,7 +8,12 @@ function LoginPage() {
         e.preventDefault();
         toggleLogin(!login);
     }
-    
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(e.target.formUsername.value);
+    }
+
     return (
         <Container className='mt-3'>
             <Row className='border py-2'>
@@ -16,7 +21,7 @@ function LoginPage() {
                 <Col className='d-flex justify-content-end align-items-center'>
                     <Button className='btn btn-secondary h-80' onClick={handleToggle}>Click here to {login ? 'Sign Up' : 'Log In' }</Button>
                 </Col>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group className='my-3' controlId='formUsername'>
                         <Form.Label>Username</Form.Label>
                         <Form.Control type='text' placeholder='Enter username'></Form.Control>
@@ -38,7 +43,9 @@ function LoginPage() {
                         </>
                     }
                     <Form.Group className='d-flex justify-content-end'>
-                        <Button type='submit' className='btn btn-primary mb-3'>{login ? 'Login' : 'Sign Up' }</Button>
+                        <Button type='submit' className='btn btn-primary mb-3'>
+                            {login ? 'Login' : 'Sign Up' }
+                        </Button>
                     </Form.Group>
                 </Form>
             </Row>
