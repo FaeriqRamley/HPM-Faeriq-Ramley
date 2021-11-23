@@ -5,6 +5,7 @@ const TestModel = require('./models/TestModel');
 const testRoutes = require('./routes/testRoutes');
 const boardRoutes = require('./routes/boardRoutes');
 const listRoutes = require('./routes/listRoutes');
+const cardRoutes = require('./routes/cardRoutes');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 
@@ -36,3 +37,4 @@ app.use('/testRoute',testRoutes);
 app.use('/users',userRoutes);
 app.use('/boards',boardRoutes);
 app.use('/lists',listRoutes);
+app.use('/cards',cardRoutes);

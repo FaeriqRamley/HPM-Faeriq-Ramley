@@ -12,13 +12,14 @@ module.exports.syncBoardList_get = async (req,res) => {
                 {
                     idList: trelloList.id,
                     idBoard: trelloList.idBoard,
+                    closed: trelloList.closed,
                     name: trelloList.name
                 },
                 {upsert:true}
             )
         }
     
-        // delete lists that are no longer in the board
+        // delete lists that are no longer on the board
         await ListModel.deleteMany({idBoard:req.body.idBoard,idList:{$nin: idListArr}});
 
         res.status(200).send({message:'successfully synced lists',lists: req.trelloBoardLists});

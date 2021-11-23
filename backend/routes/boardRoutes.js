@@ -6,4 +6,5 @@ const {syncBoards_get, getUserBoards_get} = require('../controllers/boardControl
 
 router.get('/syncBoards',getTrelloBoards,syncBoards_get);
 router.get('/getUserBoards',getUserBoards_get);
+
 module.exports = router;
