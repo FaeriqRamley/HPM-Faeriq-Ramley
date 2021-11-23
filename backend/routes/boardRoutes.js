@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
 const {getTrelloBoards} = require('../middleware/trelloMiddleware');
 const {syncBoards_get, getUserBoards_get} = require('../controllers/boardController');

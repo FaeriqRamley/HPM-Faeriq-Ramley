@@ -93,3 +93,12 @@ module.exports.updateTask_put = async (req,res) => {
     }
 }
 
+module.exports.archiveTask_delete = async (req,res) => {
+    try {
+        await CardModel.deleteOne({idCard:req.body.idCard});
+        res.status(200).send({message:'successfully archived'});
+    } catch (err) {
+        console.log('server/db error');
+        res.status(400).send(err);
+    }
+}
