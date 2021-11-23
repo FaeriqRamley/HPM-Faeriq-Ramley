@@ -1,9 +1,13 @@
 import React,{useState} from 'react';
 import {Col, Container, Form, Row,Button} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import { loginUser } from '../redux/actions/userActions';
 
 function LoginPage() {
     const [login,toggleLogin] = useState(false);
-    
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+
     const handleToggle = (e) => {
         e.preventDefault();
         toggleLogin(!login);
@@ -12,6 +16,11 @@ function LoginPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(e.target.formUsername.value);
+        const userDetails = {
+            username: e.target.formUsername.value,
+            password: e.target.formPassword.value
+        }
+        dispatch(loginUser(userDetails));
     }
 
     return (
@@ -48,6 +57,11 @@ function LoginPage() {
                         </Button>
                     </Form.Group>
                 </Form>
+            </Row>
+            <Row>
+                <Col>
+                    {JSON.stringify(user)}
+                </Col>
             </Row>
         </Container>
     )
