@@ -1,6 +1,4 @@
 const CardModel = require('../models/CardModel');
-const ListModel = require('../models/ListModel');
-
 
 module.exports.syncBoardCards_get = async (req,res) => {
     const idCardArr = [];

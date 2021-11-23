@@ -8,8 +8,10 @@ module.exports.createBoard = async (req,res,next) => {
         const apiRes = await fetch(`https://api.trello.com/1/boards/?name=${req.body.boardName}&key=${apiKey}}&token=${apiToken}`);
         const newBoard = apiRes.json();
         req.newBoard = newBoard;
+        console.log('trello api success');
         next();
     } catch (err) {
+        console.log('trello error caught')
         res.send(err)
     }
 }
@@ -20,10 +22,10 @@ module.exports.getTrelloBoards = async (req,res,next) => {
         const apiRes = await fetch(`https://api.trello.com/1/members/me/boards?fields=name,url,desc&key=${apiKey}&token=${apiToken}`);
         const allBoards = await apiRes.json();
         req.trelloBoards = allBoards;
-        console.log('success');
+        console.log('trello api success');
         next();
     } catch (err) {
-        console.log('error caught')
+        console.log('trello error caught')
         console.log(err);
         res.send(err);
     }
@@ -35,10 +37,10 @@ module.exports.getTrelloBoardLists = async (req,res,next) => {
         const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.idBoard}/lists?key=${apiKey}&token=${apiToken}`);
         const allLists = await apiRes.json();
         req.trelloBoardLists = allLists;
-        console.log('success');
+        console.log('trello api success');
         next();
     } catch (err) {
-        console.log('error caught');
+        console.log('trello error caught');
         console.log(err);
         res.send(err);
     }
@@ -50,10 +52,10 @@ module.exports.getTrelloBoardCards = async (req,res,next) => {
         const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.idBoard}/cards?key=${apiKey}&token=${apiToken}`);
         const allCards = await apiRes.json();
         req.trelloBoardCards = allCards;
-        console.log('success');
+        console.log('trello api success');
         next();
     } catch (err) {
-        console.log('error caught');
+        console.log('trello error caught');
         console.log(err);
         res.send(err);
     }
@@ -73,9 +75,10 @@ module.exports.createTrelloTask = async (req,res,next) => {
         );
         const res_data = await apiRes.json()
         req.createdTask = res_data;
-        console.log('success');
+        console.log('trello api success');
         next();
     } catch (err) {
+        console.log('trello error caught');
         res.status(400).send(err);
     }
 }
@@ -97,6 +100,7 @@ module.exports.updateTrelloTask = async (req,res,next) => {
         console.log('trello api success');
         next();
     } catch (err) {
+        console.log('trello error caught');
         res.status(400).send(err);
     }
 }
@@ -113,9 +117,7 @@ module.exports.archiveTrelloTask = async (req,res,next) => {
                 }
             }
         )
-        const res_data = await apiRes.json();
-        req.archivedTask = res_data;
-        console.log('success');
+        console.log('trello api success');
         next();
     } catch (err) {
         res.status(400).send(err);
