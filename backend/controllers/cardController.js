@@ -53,3 +53,19 @@ module.exports.getBoardCards_get = async (req,res) => {
         res.status(400).send(err);
     }
 }
+
+module.exports.createTask_post = async (req,res) => {
+    try {
+        const newCard = await CardModel.create({
+            idCard: req.createdTask.id,
+            idBoard: req.createdTask.idBoard,
+            idList: req.createdTask.idList,
+            name: req.createdTask.name,
+            description: req.createdTask.desc
+        })
+        
+        res.status(201).send({message:'task created', newCard})
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
