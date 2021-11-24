@@ -25,7 +25,7 @@ module.exports.getTrelloBoards = async (req,res,next) => {
         console.log('trello api success');
         next();
     } catch (err) {
-        console.log('trello error caught')
+        console.log('trello error caught');
         console.log(err);
         res.send(err);
     }
@@ -34,7 +34,7 @@ module.exports.getTrelloBoards = async (req,res,next) => {
 module.exports.getTrelloBoardLists = async (req,res,next) => {
     console.log('running gettrelloboardlists middleware');
     try {
-        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.idBoard}/lists?key=${apiKey}&token=${apiToken}`);
+        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.params.idBoard}/lists?key=${apiKey}&token=${apiToken}`);
         const allLists = await apiRes.json();
         req.trelloBoardLists = allLists;
         console.log('trello api success');
