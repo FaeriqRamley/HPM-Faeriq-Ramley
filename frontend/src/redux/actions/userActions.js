@@ -1,12 +1,53 @@
 export const loginUser = (userDetails) => {
-    // fetch api here to get proper userInfo
-    const userInfo = {
-        username: userDetails.username,
-        apiKey: '123456',
-        apiToken: '123abc'
-    }
-    return {
-        type:'LOGIN_USER',
-        payload:userInfo
+
+    return async function loginUserThunk(dispatch,getState){
+
+        try {
+            const res = await fetch(
+                'http://localhost:5000/users/login',
+                {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(userDetails)
+                }
+            )
+    
+            const res_data = await res.json();
+            console.log(res_data);
+            
+            if (res_data.message === 'logged in'){
+                const user = res_data.user
+                dispatch({type:'LOGIN_USER',payload:{
+                    username: user.username,
+                    apiKey: user.apiKey,
+                    apiToken: user.apiToken,
+                    boardIdList: user.boardIdList
+                }})
+            } else {
+                console.log('login failed');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+}
+
+export const signupUser = (userDetails) => {
+
+    return async function signupUserThunk(dispatch,getState){
+        try {
+            userDetails.boardIdList = [];
+            await fetch(
+                'http://localhost:5000/users/signup',
+                {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(userDetails)
+                }
+            )
+            console.log('user created!');
+        } catch (err) {
+            console.log(err)
+        }
     }
 }

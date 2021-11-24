@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Col, Container, Form, Row,Button} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
-import { loginUser } from '../redux/actions/userActions';
+import { loginUser, signupUser } from '../redux/actions/userActions';
 
 function LoginPage() {
     const [login,toggleLogin] = useState(false);
@@ -15,12 +15,21 @@ function LoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.formUsername.value);
+        console.log('submitting');
         const userDetails = {
             username: e.target.formUsername.value,
             password: e.target.formPassword.value
         }
-        dispatch(loginUser(userDetails));
+
+        if(login){
+            console.log('logging in',login);
+            dispatch(loginUser(userDetails));
+        } else {
+            console.log('signing up');
+            userDetails.apiKey = e.target.formApiKey.value;
+            userDetails.apiToken = e.target.formApiToken.value;
+            dispatch(signupUser(userDetails));
+        }
     }
 
     return (

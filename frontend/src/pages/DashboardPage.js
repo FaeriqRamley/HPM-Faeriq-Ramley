@@ -1,6 +1,10 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 
 function DashboardPage() {
+
+    useEffect(()=>{
+        console.log('hi');
+    },[])
     return (
         <div>
             This is dashboard
@@ -8,4 +12,4 @@ function DashboardPage() {
     )
 }
 
-export default DashboardPage
+export default DashboardPage;
