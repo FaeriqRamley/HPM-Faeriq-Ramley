@@ -2,7 +2,7 @@ const BoardModel = require('../models/BoardModel');
 const UserModel = require('../models/UserModel');
 
 // Synchronize boards with Trello (Trello to DB only, not DB to Trello)
-module.exports.syncBoards_get = async (req,res) => {
+module.exports.syncBoards_post = async (req,res) => {
     const allBoardId = []
     for(const board of req.trelloBoards){
         allBoardId.push(board.id);
@@ -29,7 +29,7 @@ module.exports.syncBoards_get = async (req,res) => {
 
 // Get User Boards
 module.exports.getUserBoards_get = async (req,res) => {
-    const user = await UserModel.findById(req.body._id);
+    const user = await UserModel.findById(req.params.dbUUID);
     if (user) {
         const userBoards = await BoardModel.find({idBoard:{$in:user.boardIdList}});
         res.status(200).send(userBoards);

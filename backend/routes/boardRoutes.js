@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
 const {getTrelloBoards} = require('../middleware/trelloMiddleware');
-const {syncBoards_get, getUserBoards_get} = require('../controllers/boardController');
+const {syncBoards_post, getUserBoards_get} = require('../controllers/boardController');
 
-router.get('/syncBoards',getTrelloBoards,syncBoards_get);
-router.get('/getUserBoards',getUserBoards_get);
+router.post('/syncBoards',getTrelloBoards,syncBoards_post);
+router.get('/getUserBoards/:dbUUID',getUserBoards_get);
 
 module.exports = router;

@@ -17,7 +17,9 @@ export const loginUser = (userDetails) => {
             
             if (res_data.message === 'logged in'){
                 const user = res_data.user
+                console.log(user._id);
                 dispatch({type:'LOGIN_USER',payload:{
+                    dbUUID: user._id,
                     username: user.username,
                     apiKey: user.apiKey,
                     apiToken: user.apiToken,

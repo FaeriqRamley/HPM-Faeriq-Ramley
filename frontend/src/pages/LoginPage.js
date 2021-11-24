@@ -62,7 +62,7 @@ function LoginPage() {
                     }
                     <Form.Group className='d-flex justify-content-end'>
                         <Button type='submit' className='btn btn-primary mb-3'>
-                            {login ? 'Login' : 'Sign Up' }
+                            {login ? 'Login' : 'Sign Up'}
                         </Button>
                     </Form.Group>
                 </Form>
