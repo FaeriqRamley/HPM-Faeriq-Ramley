@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
+import ProjectCardComponent from '../components/ProjectCardComponent';
 import { getLatestBoards } from '../redux/actions/projectsActions';
 
 function DashboardPage() {
@@ -10,14 +11,13 @@ function DashboardPage() {
         dispatch(getLatestBoards(user.dbUUID));
     },[])
     return (
-        <div className='container px-1 mx-auto'>
-            This is dashboard
-            {boardList.map((item) => 
-                <div className='border w-90'>
-                    <h2 className='display-5'>{item.boardName}</h2>
-                    <p className='fs-4'>{item.description}</p>
-                </div>
-            )}
+        <div className='container px-3 mx-auto my-2'>
+            <h2 className='display-3'>Project Dashboard</h2>
+            <div className='row'>
+                {boardList.map((item) => 
+                    <ProjectCardComponent item={item}/>
+                )}
+            </div>
         </div>
     )
 }

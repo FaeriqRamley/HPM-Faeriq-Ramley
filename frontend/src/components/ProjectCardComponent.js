@@ -1,10 +1,18 @@
-import React from 'react'
+import React from 'react';
+import {useNavigate} from 'react-router-dom';
+import ProjectCardStyle from './ProjectCard.module.css'
 
 function ProjectCardComponent(props) {
+    const navigate = useNavigate();
+
+    const handleOnClick = (e) => {
+        e.preventDefault();
+        navigate(`/dashboard/${props.item.idBoard}`);
+    }
     return (
-        <div className='border w-90'>
-            <h2 className='display-5'>{props.item.boardName}</h2>
-            <p className='fs-4'>{props.item.description}</p>
+        <div className={`border col-3 text-break mx-3 my-1 ${ProjectCardStyle.projCard}`} onClick={handleOnClick}>
+            <h2 className='fs-4'>{props.item.boardName}</h2>
+            <p className={`${ProjectCardStyle.projDesc}`}>{props.item.description}</p>
         </div>
     )
 }

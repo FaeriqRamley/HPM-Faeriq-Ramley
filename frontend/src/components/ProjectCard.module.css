@@ -1,0 +1,19 @@
+.projCard {
+    height:70px;
+    transition: 0.3s cubic-bezier(.14,.34,.26,.99);
+}
+
+.projCard .projDesc {
+    font-size: 0px;
+    transition: 0.25s cubic-bezier(.14,.34,.26,.99);
+}
+
+
+.projCard:hover {
+    transform: scale(1.1);
+    height:auto;
+}
+
+.projCard:hover .projDesc {
+    font-size: 13px;
+}
