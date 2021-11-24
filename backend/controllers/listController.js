@@ -20,7 +20,7 @@ module.exports.syncBoardList_get = async (req,res) => {
         }
     
         // delete lists that are no longer on the board
-        await ListModel.deleteMany({idBoard:req.body.idBoard,idList:{$nin: idListArr}});
+        await ListModel.deleteMany({idBoard:req.params.idBoard,idList:{$nin: idListArr}});
 
         res.status(200).send({message:'successfully synced lists',lists: req.trelloBoardLists});
     } catch(err){
@@ -30,7 +30,7 @@ module.exports.syncBoardList_get = async (req,res) => {
 
 module.exports.getBoardLists_get = async (req,res) => {
     try {
-        const lists = await ListModel.find({idBoard:req.body.idBoard});
+        const lists = await ListModel.find({idBoard:req.params.idBoard});
         
         if (lists) {
             res.status(200).send(lists);

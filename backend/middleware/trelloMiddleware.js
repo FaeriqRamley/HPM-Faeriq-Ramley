@@ -49,7 +49,7 @@ module.exports.getTrelloBoardLists = async (req,res,next) => {
 module.exports.getTrelloBoardCards = async (req,res,next) => {
     console.log('running gettrelloboardcards middleware');
     try {
-        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.body.idBoard}/cards?key=${apiKey}&token=${apiToken}`);
+        const apiRes = await fetch(`https://api.trello.com/1/boards/${req.params.idBoard}/cards?key=${apiKey}&token=${apiToken}`);
         const allCards = await apiRes.json();
         req.trelloBoardCards = allCards;
         console.log('trello api success');
