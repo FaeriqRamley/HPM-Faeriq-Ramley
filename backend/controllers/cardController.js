@@ -72,8 +72,9 @@ module.exports.createTask_post = async (req,res) => {
 }
 
 module.exports.updateTask_put = async (req,res) => {
+    console.log('running updateTask_put');
+    console.log('input',req.updatedTask);
     try {
-
         const updatedCard = await CardModel.findOneAndUpdate(
             {idCard:req.updatedTask.id},
             {
@@ -81,7 +82,8 @@ module.exports.updateTask_put = async (req,res) => {
                 idList: req.updatedTask.idList,
                 name: req.updatedTask.name,
                 description: req.updatedTask.desc
-            }
+            },
+            {new:true}
         )
 
         res.status(200).send({message:'task updated',updatedCard});

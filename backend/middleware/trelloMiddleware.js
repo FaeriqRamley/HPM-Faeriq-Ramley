@@ -85,9 +85,10 @@ module.exports.createTrelloTask = async (req,res,next) => {
 
 module.exports.updateTrelloTask = async (req,res,next) => {
     console.log('running updateTrelloTask middleware');
+    console.log(req.body);
     try {
         const apiRes = await fetch(
-            `https://api.trello.com/1/cards/${req.body.idCard}?name=${req.body.name}&desc=${req.body.desc}&idList=${req.body.idList}&key=${apiKey}&token=${apiToken}`,
+            `https://api.trello.com/1/cards/${req.body.idCard}?name=${req.body.name}&desc=${req.body.description}&idList=${req.body.idList}&key=${apiKey}&token=${apiToken}`,
             {
                 method: 'PUT',
                 headers: {

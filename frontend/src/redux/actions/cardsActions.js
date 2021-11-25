@@ -17,8 +17,9 @@ export const getBoardCards = (idBoard) => {
 
 export const updateCard = (newUpdatedCard) => {
 
-    return async function updateCardThunk(dispatch,getState){
+    return async function updateCardThunk(dispatch){
         try {
+            console.log('sending to api',newUpdatedCard)
             const res = await fetch(
                 'http://localhost:5000/cards/updateTask',
                 {
