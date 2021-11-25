@@ -13,11 +13,11 @@ function CardComponent(props) {
     return (
         <div className={`container shadow-sm border border-info rounded mx-1 my-3 ${styles.taskCard}`}>
             <div className='row'>
-                <p>{card.name}</p>
+                <p className='m-auto my-2'>{card.name}</p>
             </div>
             <div className='row justify-content-end'>
-                <div className='col-6 text-center my-1'>
-                    <button className='btn btn-success' onClick={handleShow}>Details</button>
+                <div className='col-6 text-end mt-1 mb-2'>
+                    <button className='btn btn-outline-success' onClick={handleShow}>Details</button>
                 </div>
             </div>
             <CardDetailsComponent handleClose={handleClose} show={show} card={card} listInfo={props.listInfo}/>

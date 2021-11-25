@@ -30,7 +30,7 @@ function ProjectPage() {
                 <h1 className='display-4 my-2'>{projName}</h1>
             </div>
             <hr/>
-            <div className='d-flex align-items-stretch' style={{overflow:'auto',height:'75vh'}}>
+            <div className='d-flex align-items-stretch' style={{overflow:'auto',height:'76vh'}}>
                 {lists.map((item,index)=>
                     <ListComponent key={index} item={item}/>
                 )}

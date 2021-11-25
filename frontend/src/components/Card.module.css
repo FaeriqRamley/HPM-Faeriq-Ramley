@@ -1,4 +1,5 @@
 .taskCard {
+    max-width: 350px;
     background-color:rgb(241, 246, 248);
     transition: 0.2s ease-in-out;
 }
