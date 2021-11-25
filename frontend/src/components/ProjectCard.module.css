@@ -9,7 +9,6 @@
     transition: 0.25s cubic-bezier(.14,.34,.26,.99);
 }
 
-
 .projCard:hover {
     transform: scale(1.1);
     cursor: pointer;

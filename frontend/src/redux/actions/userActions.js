@@ -53,3 +53,14 @@ export const signupUser = (userDetails) => {
         }
     }
 }
+
+export const logoutUser = () => {
+    return async function logoutUserThunk(dispatch,getState){
+        console.log('logging user out');
+        dispatch({type:'LOGOUT_USER'});
+        dispatch({type:'CLEAR_BOARDS'});
+        dispatch({type:'CLEAR_PROJECT_LISTS'});
+        dispatch({type:'CLEAR_ALL_CARDS'});
+        console.log(getState());
+    }
+}

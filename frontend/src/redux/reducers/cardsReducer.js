@@ -56,6 +56,8 @@ const cardsReducer = (state={},action) => {
             }
 
             return newState;
+        case 'CLEAR_ALL_CARDS':
+            return {};
         default:
             return state;
     }
