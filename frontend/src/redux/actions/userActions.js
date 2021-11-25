@@ -1,6 +1,6 @@
 export const loginUser = (userDetails) => {
 
-    return async function loginUserThunk(dispatch,getState){
+    return async function loginUserThunk(dispatch){
 
         try {
             const res = await fetch(

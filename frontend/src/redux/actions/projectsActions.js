@@ -1,9 +1,11 @@
 export const getLatestBoards = (dbUUID) => {
 
-    return async function getLatestBoardsThunk (dispatch){
+    return async function getLatestBoardsThunk (dispatch,getState){
+        const user = getState().user;
+        const {apiKey,apiToken} = user;
         try {
             await fetch(
-                'http://localhost:5000/boards/syncBoards',
+                `http://localhost:5000/boards/syncBoards/${apiKey}/${apiToken}`,
                 {
                     method:'POST',
                     headers:{'Content-Type':'application/json'},

@@ -5,6 +5,7 @@ const cardsReducer = (state={},action) => {
         case 'GET_CARDS':
             return action.payload;
         case 'CREATE_CARD':
+            console.log('create card reducer running');
             if (newState[action.payload.idList]){
                 newState[action.payload.idList].push(action.payload);
             } else {

@@ -1,7 +1,9 @@
 export const getBoardCards = (idBoard) => {
-    return async function getBoardCardsThunk(dispatch){
+    return async function getBoardCardsThunk(dispatch,getState){
+        const user = getState().user;
+        const {apiKey,apiToken} = user;
         try {
-            await fetch(`http://localhost:5000/cards/syncBoardCards/${idBoard}`);
+            await fetch(`http://localhost:5000/cards/syncBoardCards/${idBoard}/${apiKey}/${apiToken}`);
             const res = await fetch(`http://localhost:5000/cards/getBoardTasks/${idBoard}`);
             const payload = await res.json();
 
@@ -13,10 +15,13 @@ export const getBoardCards = (idBoard) => {
 }
 
 export const createCard = (newCreatedCard) => {
-    return async function createCardThunk(dispatch){
+    return async function createCardThunk(dispatch,getState){
+        const user = getState().user;
+        const {apiKey,apiToken} = user;
+        console.log(newCreatedCard);
         try {
             const res = await fetch(
-                `http://localhost:5000/cards/createTask`,
+                `http://localhost:5000/cards/createTask/${apiKey}/${apiToken}`,
                 {
                     method: 'POST',
                     headers: {'Content-Type':'application/json'},
@@ -24,6 +29,7 @@ export const createCard = (newCreatedCard) => {
                 }
             )
             const {newCard} = await res.json();
+            console.log('api done',newCard);
             dispatch({type:'CREATE_CARD',payload:newCard})
         } catch (err) {
             console.error(err);
@@ -32,11 +38,13 @@ export const createCard = (newCreatedCard) => {
 }
 
 export const updateCard = (newUpdatedCard) => {
-    return async function updateCardThunk(dispatch){
+    return async function updateCardThunk(dispatch,getState){
+        const user = getState().user;
+        const {apiKey,apiToken} = user;
         try {
 
             const res = await fetch(
-                'http://localhost:5000/cards/updateTask',
+                `http://localhost:5000/cards/updateTask/${apiKey}/${apiToken}`,
                 {
                     method:'PUT',
                     headers:{'Content-Type':'application/json'},
@@ -52,10 +60,12 @@ export const updateCard = (newUpdatedCard) => {
 }
 
 export const archiveCard = (idCard) => {
-    return async function archiveCardThunk(dispatch){
+    return async function archiveCardThunk(dispatch,getState){
+        const user = getState().user;
+        const {apiKey,apiToken} = user;
         try {
             const res = await fetch(
-                `http://localhost:5000/cards/archiveTask`,
+                `http://localhost:5000/cards/archiveTask/${apiKey}/${apiToken}`,
                 {
                     method: 'DELETE',
                     headers: {'Content-Type':'application/json'},
