@@ -2,9 +2,9 @@ const cardsReducer = (state={},action) => {
 
     const newState = {...state};
     switch(action.type){
-        case 'GET_TASKS':
+        case 'GET_CARDS':
             return action.payload;
-        case 'CREATE_TASK':
+        case 'CREATE_CARD':
 
             if (newState[action.payload.idList]){
                 newState[action.payload.idList].push(action.payload);
@@ -13,7 +13,7 @@ const cardsReducer = (state={},action) => {
             }
 
             return newState;
-        case 'UPDATE_TASK':
+        case 'UPDATE_CARD':
 
             for (let i=0;i<newState[action.payload.idList].length;i++){
                 if (newState[action.payload.idList][i].idCard === action.payload.idCard){
@@ -22,7 +22,7 @@ const cardsReducer = (state={},action) => {
             }
 
             return newState;
-        case 'ARCHIVE_TASK':
+        case 'ARCHIVE_CARD':
 
             for (let i=0;i<newState[action.payload.idList].length;i++){
                 if(newState[action.payload.idList][i].idCard === action.payload.idCard){

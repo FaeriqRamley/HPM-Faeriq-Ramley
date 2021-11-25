@@ -21,7 +21,7 @@ module.exports.syncBoardCards_get = async (req,res) => {
         }
 
         // Delete archived cards
-        await CardModel.deleteMany({idBoard:req.body.idBoard,idCard:{$nin:idCardArr}});
+        await CardModel.deleteMany({idBoard:req.params.idBoard,idCard:{$nin:idCardArr}});
 
         res.status(200).send({message:'successfully synced board cards'})
     } catch (err) {
@@ -32,7 +32,7 @@ module.exports.syncBoardCards_get = async (req,res) => {
 
 module.exports.getBoardCards_get = async (req,res) => {
     try {
-        const boardCards = await CardModel.find({idBoard:req.body.idBoard});
+        const boardCards = await CardModel.find({idBoard:req.params.idBoard});
 
         console.log('===Cards\n',boardCards);
 

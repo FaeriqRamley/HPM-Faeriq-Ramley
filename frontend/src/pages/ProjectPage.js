@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux';
 import { getBoardLists } from '../redux/actions/listsActions';
+import { getBoardCards } from '../redux/actions/cardsActions';
 import ListComponent from '../components/ListComponent';
 
 function ProjectPage() {
@@ -13,7 +14,8 @@ function ProjectPage() {
 
     
     useEffect(() => {
-        dispatch(getBoardLists(params.projectId))
+        dispatch(getBoardLists(params.projectId));
+        dispatch(getBoardCards(params.projectId));
         for(const project of projects){
             if (project.idBoard === params.projectId){
                 console.log('project found');
@@ -23,11 +25,11 @@ function ProjectPage() {
     }, [dispatch,params.projectId])
 
     return (
-        <div className='container-fluid'>
-            <div>
+        <div className='container-fluid' style={{height:'85vh'}}>
+            <div style={{height:'10vh'}}>
                 <h1 className='display-4 my-2'>{projName}</h1>
             </div>
-            <div className='d-flex align-items-stretch' style={{overflowX:'auto',height:'90vh'}}>
+            <div className='d-flex align-items-stretch' style={{overflow:'auto',height:'75vh'}}>
                 {lists.map((item,index)=>
                     <ListComponent key={index} item={item}/>
                 )}

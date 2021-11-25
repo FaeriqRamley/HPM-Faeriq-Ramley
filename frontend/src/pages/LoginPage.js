@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { loginUser, signupUser } from '../redux/actions/userActions';
 
 function LoginPage() {
-    const [login,toggleLogin] = useState(false);
+    const [login,toggleLogin] = useState(true);
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
 
