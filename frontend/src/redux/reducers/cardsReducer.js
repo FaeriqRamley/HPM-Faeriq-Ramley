@@ -34,7 +34,10 @@ const cardsReducer = (state={},action) => {
                             return newState;
                         } else {
                             // if updated card is not in the same list as previous,remove and add payload to new card
-                            newState[idList].pop(i);
+                            console.log(newState[idList]);
+                            console.log('card moved splicing',newState[idList][i]);
+                            newState[idList].splice(i,1);
+                            // newState[idList].pop(i);
                             if (newState[action.payload.idList]){
                                 newState[action.payload.idList].push(action.payload);
                                 return newState;
