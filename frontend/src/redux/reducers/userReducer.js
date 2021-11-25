@@ -1,11 +1,9 @@
-const userReducer = (state = {dbUUID:null,username:null,apiKey:null,apiToken:null,boardIdList:[]}, action) => {
+const userReducer = (state = {dbUUID:null,username:null,apiKey:null,apiToken:null}, action) => {
     switch (action.type) {
       case 'LOGIN_USER':
         return action.payload
       case 'LOGOUT_USER':
-        return {dbUUID:null,username:null,apiKey:null,apiToken:null,boardIdList:[]}
-      case 'UPDATE_BOARD_ID_LIST':
-        return {...state,boardIdList:action.payload}
+        return {dbUUID:null,username:null,apiKey:null,apiToken:null}
       default:
         return state
     }

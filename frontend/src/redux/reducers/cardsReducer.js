@@ -3,10 +3,8 @@ const cardsReducer = (state={},action) => {
     const newState = {...state};
     switch(action.type){
         case 'GET_CARDS':
-            console.log('GETTING CARDS REDUCER');
             return action.payload;
         case 'CREATE_CARD':
-
             if (newState[action.payload.idList]){
                 newState[action.payload.idList].push(action.payload);
             } else {
@@ -15,7 +13,6 @@ const cardsReducer = (state={},action) => {
 
             return newState;
         case 'UPDATE_CARD':
-            console.log('running update card');
             for (const [idList,cardsArr] of Object.entries(newState)){
                 for (let i=0;i<cardsArr.length;i++){
                     if (cardsArr[i].idCard === action.payload.idCard){
@@ -27,11 +24,8 @@ const cardsReducer = (state={},action) => {
                             newState[idList][i] = action.payload;
                             return newState;
                         } else {
-                            // if updated card is not in the same list as previous,remove and add payload to new card
-                            console.log(newState[idList]);
-                            console.log('card moved splicing',newState[idList][i]);
+                            // if updated card is not in the same list as previous,remove old entry and add payload to new card
                             newState[idList].splice(i,1);
-                            // newState[idList].pop(i);
                             if (newState[action.payload.idList]){
                                 newState[action.payload.idList].push(action.payload);
                                 return newState;
@@ -46,7 +40,6 @@ const cardsReducer = (state={},action) => {
 
             return newState;
         case 'ARCHIVE_CARD':
-            console.log('running archive card');
             for (let i=0;i<newState[action.payload.idList].length;i++){
                 if(newState[action.payload.idList][i].idCard === action.payload.idCard){
                     console.log('idCard found and deleted');
