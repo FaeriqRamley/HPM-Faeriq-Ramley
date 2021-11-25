@@ -1,5 +1,6 @@
 .projCard {
-    height:70px;
+    background-color: rgb(241, 246, 248);
+    height:100px;
     transition: 0.3s cubic-bezier(.14,.34,.26,.99);
 }
 
@@ -11,6 +12,7 @@
 
 .projCard:hover {
     transform: scale(1.1);
+    cursor: pointer;
     height:auto;
 }
 

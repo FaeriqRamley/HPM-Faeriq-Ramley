@@ -1,6 +1,6 @@
 export const getBoardCards = (idBoard) => {
 
-    return async function getBoardCardsThunk(dispatch,getState){
+    return async function getBoardCardsThunk(dispatch){
         
         try {
             await fetch(`http://localhost:5000/cards/syncBoardCards/${idBoard}`);
@@ -15,11 +15,32 @@ export const getBoardCards = (idBoard) => {
     }
 }
 
+export const createCard = (newCreatedCard) => {
+
+    return async function createCardThunk(dispatch){
+        try {
+            const res = await fetch(
+                `http://localhost:5000/cards/createTask`,
+                {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify(newCreatedCard)
+                }
+            )
+            const {newCard} = await res.json();
+            console.log('create successful');
+            dispatch({type:'CREATE_CARD',payload:newCard})
+        } catch (err) {
+            console.error(err);
+        }
+    }
+}
+
 export const updateCard = (newUpdatedCard) => {
 
     return async function updateCardThunk(dispatch){
         try {
-            
+
             const res = await fetch(
                 'http://localhost:5000/cards/updateTask',
                 {

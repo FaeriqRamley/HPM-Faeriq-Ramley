@@ -43,14 +43,14 @@ function CardDetailsComponent(props) {
     
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header>
+            <Modal.Header style={{backgroundColor:'rgb(241, 246, 248)'}}>
                 <Modal.Title>Task Details</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <p className='fs-4 mb-0'>Task Name</p>
+            <Modal.Body style={{backgroundColor:'rgb(241, 246, 248)'}}>
+                <p className='fs-6 mb-0'>Task Name</p>
                 {edit ? <input type='text' value={cardName} onChange={handleNameUpdate}/>: <p className='fs-5 mb-1'>{card.name}</p>}
                 <p className='fs-6 mb-0'>Description</p>
-                {edit ? <input type='text' value={cardDesc} onChange={handleDescUpdate}/>: <p className='fs-6 mb-1'>{card.description === '' ? '-':card.description}</p>}
+                {edit ? <input type='text' value={cardDesc} onChange={handleDescUpdate}/>: <p className='fs-5 mb-1'>{card.description === '' ? '-':card.description}</p>}
                 <p className='fs-6 mb-0'>List</p>
                 {edit ?
                     <select value={cardList} onChange={handleListUpdate}>
@@ -58,10 +58,10 @@ function CardDetailsComponent(props) {
                             <option key={index} value={boardList.idList}>{boardList.name}</option>
                         )}
                     </select>:
-                    <p className='fs-6 mb-1'>{listInfo.name}</p>
+                    <p className='fs-5 mb-1'>{listInfo.name}</p>
                 }
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer style={{backgroundColor:'rgb(241, 246, 248)'}}>
                 <Button variant={edit ? 'primary':'outline-secondary'} onClick={handleUpdate}>
                     {edit ? 'Confirm Edit':'Edit Task'}
                 </Button>

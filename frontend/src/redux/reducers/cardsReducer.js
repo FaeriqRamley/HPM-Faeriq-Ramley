@@ -16,12 +16,6 @@ const cardsReducer = (state={},action) => {
             return newState;
         case 'UPDATE_CARD':
             console.log('running update card');
-            // for (let i=0;i<newState[action.payload.idList].length;i++){
-            //     if (newState[action.payload.idList][i].idCard === action.payload.idCard){
-            //         newState[action.payload.idList][i] = action.payload
-            //     }
-            // }
-            console.log('received card',action.payload);
             for (const [idList,cardsArr] of Object.entries(newState)){
                 for (let i=0;i<cardsArr.length;i++){
                     if (cardsArr[i].idCard === action.payload.idCard){

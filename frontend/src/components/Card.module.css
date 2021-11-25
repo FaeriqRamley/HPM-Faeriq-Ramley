@@ -1,0 +1,8 @@
+.taskCard {
+    background-color:rgb(241, 246, 248);
+    transition: 0.2s ease-in-out;
+}
+
+.taskCard:hover {
+    transform: scale(1.02);
+}

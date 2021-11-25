@@ -10,8 +10,8 @@ function ProjectCardComponent(props) {
         navigate(`/dashboard/${props.item.idBoard}`);
     }
     return (
-        <div className={`border col-3 text-break mx-3 my-1 ${ProjectCardStyle.projCard}`} onClick={handleOnClick}>
-            <h2 className='fs-4'>{props.item.boardName}</h2>
+        <div className={`border border-dark rounded shadow col-3 text-break mx-3 my-4 ${ProjectCardStyle.projCard}`} onClick={handleOnClick}>
+            <h2 className='fs-4 mt-1'>{props.item.boardName}</h2>
             <p className={`${ProjectCardStyle.projDesc}`}>{props.item.description}</p>
         </div>
     )

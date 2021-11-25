@@ -1,20 +1,16 @@
 import React,{useState} from 'react'
 import CardDetailsComponent from './CardDetailsComponent';
+import styles from './Card.module.css';
 
 function CardComponent(props) {
     const {card} = props;
     const [show,setShow] = useState(false)
 
-    const handleShow = (e) => {
-        setShow(true);
-    }
-
-    const handleClose = () => {
-        setShow(false);
-    }
+    const handleShow = (e) => setShow(true);
+    const handleClose = (e) => setShow(false);
 
     return (
-        <div className='container border m-1'>
+        <div className={`container shadow-sm border border-info rounded mx-1 my-3 ${styles.taskCard}`}>
             <div className='row'>
                 <p>{card.name}</p>
             </div>
