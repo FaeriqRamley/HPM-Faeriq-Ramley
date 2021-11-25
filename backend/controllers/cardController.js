@@ -1,5 +1,6 @@
 const CardModel = require('../models/CardModel');
 
+// function to synchronize board cards. Will delete archived cards from the database
 module.exports.syncBoardCards_get = async (req,res) => {
     const idCardArr = [];
 
@@ -30,11 +31,10 @@ module.exports.syncBoardCards_get = async (req,res) => {
     }
 }
 
+// Get the board cards from the database
 module.exports.getBoardCards_get = async (req,res) => {
     try {
         const boardCards = await CardModel.find({idBoard:req.params.idBoard});
-
-        console.log('===Cards\n',boardCards);
 
         const cardListObj = {}
 
@@ -54,6 +54,7 @@ module.exports.getBoardCards_get = async (req,res) => {
     }
 }
 
+// Function to create a task in database
 module.exports.createTask_post = async (req,res) => {
     try {
         const newCard = await CardModel.create({
@@ -71,6 +72,7 @@ module.exports.createTask_post = async (req,res) => {
     }
 }
 
+// Function to update task in database
 module.exports.updateTask_put = async (req,res) => {
     console.log('running updateTask_put');
     console.log('input',req.updatedTask);
@@ -93,6 +95,7 @@ module.exports.updateTask_put = async (req,res) => {
     }
 }
 
+// Function to archive task in database
 module.exports.archiveTask_delete = async (req,res) => {
     try {
         const deletedCard = await CardModel.findOneAndDelete({idCard:req.body.idCard});

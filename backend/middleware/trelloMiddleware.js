@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const apiKey = process.env.apiKey;
 const apiToken = process.env.apiToken;
 
+// Function to create board. Not implemented
 module.exports.createBoard = async (req,res,next) => {
     try {
         const apiRes = await fetch(`https://api.trello.com/1/boards/?name=${req.body.boardName}&key=${apiKey}}&token=${apiToken}`);

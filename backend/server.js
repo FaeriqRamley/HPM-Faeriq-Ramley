@@ -2,8 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const TestModel = require('./models/TestModel');
-const testRoutes = require('./routes/testRoutes');
 const boardRoutes = require('./routes/boardRoutes');
 const listRoutes = require('./routes/listRoutes');
 const cardRoutes = require('./routes/cardRoutes');
@@ -26,7 +24,6 @@ mongoose
 .catch(err=>console.log(err));
 
 
-app.use('/testRoute',testRoutes);
 app.use('/users',userRoutes);
 app.use('/boards',boardRoutes);
 app.use('/lists',listRoutes);

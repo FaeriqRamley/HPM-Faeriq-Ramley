@@ -1,5 +1,6 @@
 const ListModel = require('../models/ListModel');
 
+// function to synchronize board list
 module.exports.syncBoardList_get = async (req,res) => {
     const idListArr = []
 
@@ -28,6 +29,7 @@ module.exports.syncBoardList_get = async (req,res) => {
     }
 }
 
+// Function to get board lists from database
 module.exports.getBoardLists_get = async (req,res) => {
     try {
         const lists = await ListModel.find({idBoard:req.params.idBoard});
