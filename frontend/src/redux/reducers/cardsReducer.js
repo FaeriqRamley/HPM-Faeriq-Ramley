@@ -3,6 +3,7 @@ const cardsReducer = (state={},action) => {
     const newState = {...state};
     switch(action.type){
         case 'GET_CARDS':
+            console.log('GETTING CARDS REDUCER');
             return action.payload;
         case 'CREATE_CARD':
 
@@ -23,14 +24,15 @@ const cardsReducer = (state={},action) => {
 
             return newState;
         case 'ARCHIVE_CARD':
-
+            console.log('running archive card');
             for (let i=0;i<newState[action.payload.idList].length;i++){
                 if(newState[action.payload.idList][i].idCard === action.payload.idCard){
+                    console.log('idCard found and deleted');
                     newState[action.payload.idList].pop(i);
                     break;
                 }
             }
-
+            console.log(newState);
             return newState;
         default:
             return state;

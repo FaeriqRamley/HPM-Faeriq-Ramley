@@ -12,7 +12,7 @@ function ListComponent(props) {
         <div className='text-break m-2' style={{minWidth:'350px'}}>
             <h1 className='display-6'>{props.item.name}</h1>
             {listCards && listCards.map((card,index)=>
-                <CardComponent key={index} card={card}/>
+                <CardComponent key={index} card={card} listInfo={props.item}/>
             )}
         </div>
     )
