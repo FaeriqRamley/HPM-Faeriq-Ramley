@@ -1,6 +1,6 @@
 export const getLatestBoards = (dbUUID) => {
 
-    return async function getLatestBoardsThunk (dispatch,getState){
+    return async function getLatestBoardsThunk (dispatch){
         try {
             await fetch(
                 'http://localhost:5000/boards/syncBoards',

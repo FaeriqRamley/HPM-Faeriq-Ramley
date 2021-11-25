@@ -1,5 +1,5 @@
 export const getBoardLists = (idBoard) => {
-    return async function getBoardListsThunk(dispatch,getState){
+    return async function getBoardListsThunk(dispatch){
         dispatch({type:'CLEAR_PROJECT_LISTS'});
         try {
             await fetch(`http://localhost:5000/lists/syncBoardList/${idBoard}`);

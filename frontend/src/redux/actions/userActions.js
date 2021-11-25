@@ -13,11 +13,9 @@ export const loginUser = (userDetails) => {
             )
     
             const res_data = await res.json();
-            console.log(res_data);
             
             if (res_data.message === 'logged in'){
                 const user = res_data.user
-                console.log(user._id);
                 dispatch({type:'LOGIN_USER',payload:{
                     dbUUID: user._id,
                     username: user.username,
@@ -35,8 +33,7 @@ export const loginUser = (userDetails) => {
 }
 
 export const signupUser = (userDetails) => {
-
-    return async function signupUserThunk(dispatch,getState){
+    return async function signupUserThunk(){
         try {
             userDetails.boardIdList = [];
             await fetch(
@@ -56,11 +53,10 @@ export const signupUser = (userDetails) => {
 
 export const logoutUser = () => {
     return async function logoutUserThunk(dispatch,getState){
-        console.log('logging user out');
         dispatch({type:'LOGOUT_USER'});
         dispatch({type:'CLEAR_BOARDS'});
         dispatch({type:'CLEAR_PROJECT_LISTS'});
         dispatch({type:'CLEAR_ALL_CARDS'});
-        console.log(getState());
+        // console.log(getState());
     }
 }
