@@ -15,7 +15,7 @@ const cardsReducer = (state={},action) => {
 
             return newState;
         case 'UPDATE_CARD':
-
+            console.log('running update card');
             for (let i=0;i<newState[action.payload.idList].length;i++){
                 if (newState[action.payload.idList][i].idCard === action.payload.idCard){
                     newState[action.payload.idList][i] = action.payload
@@ -32,7 +32,7 @@ const cardsReducer = (state={},action) => {
                     break;
                 }
             }
-            console.log(newState);
+
             return newState;
         default:
             return state;

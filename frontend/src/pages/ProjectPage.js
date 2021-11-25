@@ -22,13 +22,14 @@ function ProjectPage() {
                 setProjName(project.boardName);
             }
         }
-    }, [dispatch,params.projectId])
+    }, [dispatch,params.projectId,projects])
 
     return (
         <div className='container-fluid' style={{height:'85vh'}}>
             <div style={{height:'10vh'}}>
                 <h1 className='display-4 my-2'>{projName}</h1>
             </div>
+            <hr/>
             <div className='d-flex align-items-stretch' style={{overflow:'auto',height:'75vh'}}>
                 {lists.map((item,index)=>
                     <ListComponent key={index} item={item}/>

@@ -9,13 +9,13 @@ function DashboardPage() {
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(getLatestBoards(user.dbUUID));
-    },[])
+    },[dispatch,user.dbUUID])
     return (
         <div className='container px-3 mx-auto my-2'>
             <h2 className='display-3'>Project Dashboard</h2>
             <div className='row'>
-                {boardList.map((item) => 
-                    <ProjectCardComponent item={item}/>
+                {boardList.map((item,index) => 
+                    <ProjectCardComponent key={index} item={item}/>
                 )}
             </div>
         </div>
