@@ -30,6 +30,7 @@ function LoginPage() {
             userDetails.apiKey = e.target.formApiKey.value;
             userDetails.apiToken = e.target.formApiToken.value;
             dispatch(signupUser(userDetails));
+            toggleLogin(true);
         }
     }
 
