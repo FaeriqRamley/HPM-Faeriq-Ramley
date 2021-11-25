@@ -3,30 +3,31 @@ import {Modal,Button} from 'react-bootstrap';
 import {useDispatch,useSelector} from 'react-redux';
 import { archiveCard,updateCard } from '../redux/actions/cardsActions';
 
+// Modal component for more details of task
 function CardDetailsComponent(props) {
     const {card, listInfo, show, handleClose} = props;
     const [edit,toggleEdit] = useState(false);
+    const dispatch = useDispatch();
+    const allLists = useSelector(state=>state.lists);
+    // Form values and functions
     const [cardName,setCardName] = useState(card.name);
     const [cardDesc,setCardDesc] = useState(card.description);
     const [cardList,setCardList] = useState(listInfo.idList);
-    const dispatch = useDispatch();
-    const allLists = useSelector(state=>state.lists);
-
     const handleNameUpdate = (e) => setCardName(e.target.value);
     const handleDescUpdate = (e) => setCardDesc(e.target.value);
     const handleListUpdate = (e) => setCardList(e.target.value);
 
+    // Update function. Cancel update button needs to be added
     const handleUpdate = (e) => {
         e.preventDefault();
         console.log(allLists);
 
-        // Submission of edit
+        // Submission of Update Card function
         if(edit){
             const updatedCard = {...card, name:cardName,description:cardDesc,idList:cardList};
             console.log('dispatching',updatedCard);
             dispatch(updateCard(updatedCard));
             toggleEdit(false);
-            setCardName(card.name);
 
             handleClose();
         } else{
@@ -35,6 +36,7 @@ function CardDetailsComponent(props) {
 
     }
 
+    // Archive function to delete card
     const handleArchive = (e) => {
         e.preventDefault();
         dispatch(archiveCard(card.idCard));

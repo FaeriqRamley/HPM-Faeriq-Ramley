@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import CardComponent from './CardComponent';
 import CardCreateComponent from './CardCreateComponent';
 
+// Component to display Lists in projects page
 function ListComponent(props) {
     const cards = useSelector(state=>state.cards);
     const listCards = cards[props.item.idList];

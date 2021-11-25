@@ -5,11 +5,13 @@ function UserInfoComponent(props) {
     const {user} = props;
     const dispatch = useDispatch();
 
+    // logout function
     const handleLogout = (e) => {
         console.log('clicked');
         e.preventDefault();
         dispatch(logoutUser());
     }
+
     return (
         <div className='container'>
             <h1 className='display-3 text-center'>User Info</h1>

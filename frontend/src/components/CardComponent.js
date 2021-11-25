@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import CardDetailsComponent from './CardDetailsComponent';
 import styles from './Card.module.css';
 
+// Component to display Task Cards on the List component
 function CardComponent(props) {
     const {card} = props;
     const [show,setShow] = useState(false)

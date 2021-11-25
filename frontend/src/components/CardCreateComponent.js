@@ -3,6 +3,7 @@ import {Modal,Button, Form} from 'react-bootstrap';
 import {useDispatch} from 'react-redux';
 import { createCard } from '../redux/actions/cardsActions';
 
+// Modal component for card/task creation
 function CardCreateComponent(props) {
     const {show,handleClose,listInfo} = props;
     const dispatch = useDispatch();

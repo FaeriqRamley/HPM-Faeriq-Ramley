@@ -12,7 +12,7 @@ function ProjectPage() {
     const [projName,setProjName] = useState('');
     const dispatch = useDispatch();
 
-    
+    // Get lists and cards of board on render
     useEffect(() => {
         dispatch(getBoardLists(params.projectId));
         dispatch(getBoardCards(params.projectId));
