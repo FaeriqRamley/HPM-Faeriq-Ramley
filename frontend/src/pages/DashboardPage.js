@@ -7,6 +7,8 @@ function DashboardPage() {
     const boardList = useSelector(state => state.projects);
     const user = useSelector(state=> state.user);
     const dispatch = useDispatch();
+
+    // get latest project boards on component render
     useEffect(()=>{
         dispatch(getLatestBoards(user.dbUUID));
     },[dispatch,user.dbUUID])

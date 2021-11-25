@@ -70,11 +70,6 @@ function LoginPage() {
                             </Form.Group>
                         </Form>
                     </Row>
-                    <Row>
-                        <Col>
-                            {JSON.stringify(user)}
-                        </Col>
-                    </Row>
                 </Container>
             }
         </>
